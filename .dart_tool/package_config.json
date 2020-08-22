@@ -86,13 +86,13 @@
       "languageVersion": "2.7"
     },
     {
-      "name": "nextsol_localization_generate",
+      "name": "localization_generate_flutter",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.8"
     }
   ],
-  "generated": "2020-08-22T10:57:49.421579Z",
+  "generated": "2020-08-22T14:58:51.205463Z",
   "generator": "pub",
   "generatorVersion": "2.9.0-21.0.dev.flutter-9dca49e71e"
 }

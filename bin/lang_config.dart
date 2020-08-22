@@ -7,6 +7,6 @@ class LangConfig {
 
   static const TEXT_NAME_CLASS = 'TextName';
 
-  static String get xlsxDocPath => Directory.current.path + '/assets/';
+  static String get xlsxDocPath => Directory.current.path + '/strings/';
   static String get generateDirectory => Directory.current.path + '/generated/';
 }
