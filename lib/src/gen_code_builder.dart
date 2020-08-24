@@ -34,7 +34,8 @@ class GenCodeBuilder implements Builder {
     }
     var fileName = inputId.changeExtension('.dart').path.split('/').last;
     // await buildStep.writeAsString(inputId.changeExtension('.dart'), _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
-    await buildStep.writeAsString(AssetId(inputId.package, pathLozalization + '/gen/' + fileName), _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
+    // await buildStep.writeAsString(AssetId(inputId.package, pathLozalization + '/gen/' + fileName), _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
+    _createFile(pathLozalization + '/gen/' + fileName, _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
   }
 
   List<String> _listLanguageFromDir(String path) {
