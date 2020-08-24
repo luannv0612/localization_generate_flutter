@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:build/build.dart';
 
 class GenCodeBuilder implements Builder {
+  String pathLozalization = 'lib/res/strings';
 
   @override
   Map<String, List<String>> get buildExtensions => {
@@ -27,12 +28,13 @@ class GenCodeBuilder implements Builder {
     }
 
     if (defaultLang) {
-      var languages = _listLanguageFromDir('lib/res/strings');
-      await Directory('lib/res/strings/gen').create(recursive: false);
-      await _createFile('lib/res/strings/gen/strings.dart', _genDefaultStrings(inputId.package, currentLangCode, languages, content));
+      var languages = _listLanguageFromDir(pathLozalization);
+      await Directory(pathLozalization + '/gen').create(recursive: false);
+      await _createFile(pathLozalization + '/gen/strings.dart', _genDefaultStrings(inputId.package, currentLangCode, languages, content));
     }
-
-    await buildStep.writeAsString(inputId.changeExtension('.dart'), _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
+    var fileName = inputId.changeExtension('.dart').path.split('/').last;
+    // await buildStep.writeAsString(inputId.changeExtension('.dart'), _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
+    await buildStep.writeAsString(AssetId(inputId.package, pathLozalization + '/gen/' + fileName), _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
   }
 
   List<String> _listLanguageFromDir(String path) {
