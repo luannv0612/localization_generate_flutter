@@ -1,0 +1,9 @@
+builders:
+  localizationBuilder:
+    import: 'package:localization_generate_flutter/localization_code_gen.dart'
+    builder_factories: ['localizationBuilder']
+    build_extensions:
+      .json:
+        - .dart
+    build_to: source
+    auto_apply: dependents
