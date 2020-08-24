@@ -86,7 +86,7 @@ class GenCodeBuilder implements Builder {
     for(var fileName in languages) {
       //build import
       import = import + '''
-import 'package:$package/res/strings/$fileName.dart';
+import 'package:$package/res/strings/gen/$fileName.dart';
 ''';
       //build supportedLocales
       supportedLocales = supportedLocales + '''
@@ -236,7 +236,7 @@ String getLang(Locale l) => l == null
   String _genContentStrings(String package, String langCode, String content) {
     var className = capitalize(langCode);
     return '''
-import 'package:$package/langs/gen/strings.dart';
+import 'package:$package/res/strings/gen/strings.dart';
 
 // ignore_for_file: non_constant_identifier_names
 class $className extends Strings {
