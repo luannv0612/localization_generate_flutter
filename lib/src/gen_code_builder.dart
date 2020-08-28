@@ -38,8 +38,8 @@ class GenCodeBuilder implements Builder {
     _createFile(pathLozalization + '/gen/' + fileName, _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
   }
 
-  String _genKeyProp(String key, String value) {
-    return '\'$key\': \'$value\',\n';
+  String _genKeyProp(String key, String input) {
+    return '\'$key\': \'$input\',\\n';
   }
 
   List<String> _listLanguageFromDir(String path) {
