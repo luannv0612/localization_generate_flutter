@@ -39,7 +39,8 @@ class GenCodeBuilder implements Builder {
   }
 
   String _genKeyProp(String key, String input) {
-    return '\'$key\': \'$input\',\\n';
+    var value = input.replaceAll('\n', '\\n');
+    return '\'$key\': \'$value\',\\n';
   }
 
   List<String> _listLanguageFromDir(String path) {
