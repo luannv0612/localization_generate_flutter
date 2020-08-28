@@ -19,23 +19,27 @@ class GenCodeBuilder implements Builder {
 
     //build string class
     String content;
+    String contentProp;
 
     var defaultLang = data['isDefault'] ?? false;
     var currentLangCode = inputId.pathSegments[inputId.pathSegments.length - 1].replaceAll('.json', '');
 
     for (var key in data.keys) {
       content = content == null ? _genKey(key, data[key].toString(), !defaultLang) : content + _genKey(key, data[key].toString(), !defaultLang);
+      contentProp = contentProp == null ? _genKeyProp(key, data[key].toString()) : content + _genKeyProp(key, data[key].toString());
     }
 
     if (defaultLang) {
       var languages = _listLanguageFromDir(pathLozalization);
       await Directory(pathLozalization + '/gen').create(recursive: false);
-      await _createFile(pathLozalization + '/gen/strings.dart', _genDefaultStrings(inputId.package, currentLangCode, languages, content));
+      await _createFile(pathLozalization + '/gen/strings.dart', _genDefaultStrings(inputId.package, currentLangCode, languages, content, contentProp));
     }
     var fileName = inputId.changeExtension('.dart').path.split('/').last;
-    // await buildStep.writeAsString(inputId.changeExtension('.dart'), _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
-    // await buildStep.writeAsString(AssetId(inputId.package, pathLozalization + '/gen/' + fileName), _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
     _createFile(pathLozalization + '/gen/' + fileName, _genContentStrings(inputId.package, currentLangCode, defaultLang ? '' : content));
+  }
+
+  String _genKeyProp(String key, String value) {
+    return '\'$key\': \'$value\',';
   }
 
   List<String> _listLanguageFromDir(String path) {
@@ -82,7 +86,7 @@ class GenCodeBuilder implements Builder {
     return buffer.toString();
   }
 
-  String _genDefaultStrings(String package, String defaultLanguage, List<String> languages, String content) {
+  String _genDefaultStrings(String package, String defaultLanguage, List<String> languages, String content, String contentProp) {
     var import = '';
     var supportedLocales = '';
     var loadInfo = '';
@@ -148,7 +152,9 @@ $content
     return delegate.getStringLabel(context, key);
   }
 
-  dynamic getProp(String key) => <String, dynamic>data[key];
+  dynamic getProp(String key) => <String, dynamic>{
+    $contentProp
+    }[key];
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<Strings> {
