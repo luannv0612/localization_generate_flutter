@@ -138,10 +138,15 @@ $content
     }
     return null;
   }
+
+  static String stringByKey(BuildContext context, String key) {
+    return delegate.getStringLabel(context, key);
+  }
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<Strings> {
   const GeneratedLocalizationsDelegate();
+  Map<String, dynamic> _defaultSentences = HashMap();
 
   List<Locale> get supportedLocales {
     return const <Locale>[
@@ -174,7 +179,20 @@ $loadInfo
       }
     }
     Strings.current = const Strings();
+    String defaultLanguage = await rootBundle.loadString(
+        (AppConfig.instance.isSubApp ? Const.PACKAGE_APP_PATH : '') +
+            'lib/assets/strings/' + locale.languageCode + '.json');
+    this._defaultSentences = json.decode(defaultLanguage);
     return SynchronousFuture<Strings>(Strings.current);
+  }
+
+  String getStringLabel(BuildContext context, String key) {
+    
+    if (key == null || key.isEmpty) {
+      return key;
+    }
+    String ret = _defaultSentences[key] ?? key;
+    return ret;
   }
 
   @override
