@@ -147,6 +147,8 @@ $content
   static String stringByKey(BuildContext context, String key) {
     return delegate.getStringLabel(context, key);
   }
+
+  dynamic getProp(String key) => <String, dynamic>data[key];
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<Strings> {
