@@ -39,7 +39,7 @@ class GenCodeBuilder implements Builder {
   }
 
   String _genKeyProp(String key, String value) {
-    return '\'$key\': \'$value\',';
+    return '\'$key\': \'$value\',\n';
   }
 
   List<String> _listLanguageFromDir(String path) {
