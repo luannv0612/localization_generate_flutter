@@ -184,7 +184,7 @@ $loadInfo
       }
     }
     Strings.current = const Strings();
-    String defaultLanguage = await rootBundle.loadString('$pathLozalization/' + locale.languageCode + '.json');
+    String defaultLanguage = await rootBundle.loadString('$pathLozalization/' + lang + '.json');
     _defaultSentences = json.decode(defaultLanguage);
     return SynchronousFuture<Strings>(Strings.current);
   }
