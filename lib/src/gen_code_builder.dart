@@ -104,8 +104,13 @@ import 'package:$package/res/strings/gen/$fileName.dart';
 ''';
     }
     return '''
+import 'dart:async';
+import 'dart:collection';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+
 $import
 
 // ignore_for_file: non_constant_identifier_names
@@ -146,7 +151,7 @@ $content
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<Strings> {
   const GeneratedLocalizationsDelegate();
-  Map<String, dynamic> _defaultSentences = HashMap();
+  static Map<String, dynamic> _defaultSentences = HashMap();
 
   List<Locale> get supportedLocales {
     return const <Locale>[
@@ -171,7 +176,7 @@ $supportedLocales
   }
 
   @override
-  Future<Strings> load(Locale locale) {
+  Future<Strings> load(Locale locale) async {
     final String lang = getLang(locale);
     if (lang != null) {
       switch (lang) {
@@ -179,10 +184,8 @@ $loadInfo
       }
     }
     Strings.current = const Strings();
-    String defaultLanguage = await rootBundle.loadString(
-        (AppConfig.instance.isSubApp ? Const.PACKAGE_APP_PATH : '') +
-            'lib/assets/strings/' + locale.languageCode + '.json');
-    this._defaultSentences = json.decode(defaultLanguage);
+    String defaultLanguage = await rootBundle.loadString($pathLozalization + '/' + locale.languageCode + '.json');
+    _defaultSentences = json.decode(defaultLanguage);
     return SynchronousFuture<Strings>(Strings.current);
   }
 
