@@ -26,7 +26,7 @@ class GenCodeBuilder implements Builder {
 
     for (var key in data.keys) {
       content = content == null ? _genKey(key, data[key].toString(), !defaultLang) : content + _genKey(key, data[key].toString(), !defaultLang);
-      contentProp = contentProp == null ? _genKeyProp(key, data[key].toString()) : content + _genKeyProp(key, data[key].toString());
+      contentProp = contentProp == null ? _genKeyProp(key, data[key].toString()) : contentProp + _genKeyProp(key, data[key].toString());
     }
 
     if (defaultLang) {
