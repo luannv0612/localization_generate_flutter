@@ -14,6 +14,9 @@ class GenCodeBuilder implements Builder {
   @override
   FutureOr<void> build(BuildStep buildStep) async {
     var inputId = buildStep.inputId;
+    if (!inputId.path.contains(pathLozalization)) {
+      return;
+    }
     var contents = await buildStep.readAsString(inputId);
     Map<String, dynamic> data = jsonDecode(contents);
 
