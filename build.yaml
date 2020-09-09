@@ -1,6 +1,6 @@
 builders:
   localizationBuilder:
-    import: 'package:localization_generate_flutter/localization_code_gen.dart'
+    import: 'package:localization_generator/localization_code_gen.dart'
     builder_factories: ['localizationBuilder']
     build_extensions:
       .json:

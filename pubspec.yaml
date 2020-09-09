@@ -1,4 +1,4 @@
-name: localization_generate_flutter
+name: localization_generator
 description: Gen multi language dart code for flutter.
 version: 1.0.0
 

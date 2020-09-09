@@ -13,8 +13,8 @@ dependencies:
 ```
 dev_dependencies:  
   build_runner: ^1.7.3  
-  localization_generate_flutter:
-    git: https://github.com/luannv0612/localization_generate_flutter.git
+  localization_generator:
+    git: https://github.com/luannv0612/localization_generator.git
 ```
 create file ***build.yaml*** in folder project:
 ```
@@ -23,7 +23,7 @@ targets:
   #the same name in pubspec.yaml  
   test_localization_code_gen:test_localization_code_gen:  
     builders:  
-      localization_generate_flutter|localizationBuilder:  
+      localization_generator|localizationBuilder:  
         generate_for:  
           - lib/res/strings/*
 ```
