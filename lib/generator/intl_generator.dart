@@ -67,6 +67,7 @@ class IntlGenerator extends Generator {
         msg += "\$${node.value}";
       }
     }
+    msg = msg.replaceAll('\n', '\\n');
     return """Intl.message("$msg")""";
   }
 

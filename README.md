@@ -2,11 +2,11 @@
 
 A command tool to generate localization from JSON file.
 
-![Dart CI](https://github.com/shana0440/localization_generator/workflows/Dart%20CI/badge.svg?branch=master)
+![Dart CI](https://github.com/luannv0612/localization_generator)
 
 ## Usage
 
-create `en.json` and `zh_Hant.json` at l10n folder
+create `en.json` and `vi.json` at l10n folder
 
 en.json
 ```json
